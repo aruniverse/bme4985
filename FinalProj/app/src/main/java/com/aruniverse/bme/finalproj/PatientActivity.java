@@ -153,7 +153,7 @@ public class PatientActivity extends AppCompatActivity {
                     if(!hm.containsKey(hz)) {                                                               // very unlikely that key will be present but just in case
                         graphView.removeAllSeries();                                                        // reset the graph
                         hm.put(hz, vol);                                                                    // add new key(hz)
-                        List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                        // get list of all keys
+                        List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                              // get list of all keys
                         Collections.sort(keyList);                                                          // sort list of keys in increasing order
                         LineGraphSeries<DataPoint> newData = new LineGraphSeries<>(new DataPoint[]{});
                         for (int i=0; i<keyList.size(); i++) {                                              // go through all keys
@@ -164,8 +164,6 @@ public class PatientActivity extends AppCompatActivity {
                         graphView.addSeries(newData);
                     }
                 }
-//                if(areAllButtonsDisabled())
-//                    save.setEnabled(true);
             }
         });
         reset.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +189,7 @@ public class PatientActivity extends AppCompatActivity {
 //                }
                 ParseObject patientData = new ParseObject("HearingTestData");
                 patientData.put("Patient", patientName);
-                List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                        // get list of all keys
+                List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                              // get list of all keys
                 Collections.sort(keyList);                                                          // sort list of keys in increasing order
                 for (int i=0; i<keyList.size(); i++) {                                              // go through all keys
                     int key = keyList.get(i);                                                       // get key
@@ -230,12 +228,4 @@ public class PatientActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
-
-//    public boolean areAllButtonsDisabled(){
-//        for(Button b : buttonList){
-//            if(b.isEnabled())
-//                return false;
-//        }
-//        return true;
-//    }
 }

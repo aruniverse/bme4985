@@ -10,8 +10,6 @@ import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -49,36 +47,17 @@ public class DoctorActivity extends AppCompatActivity {
             }
         });
 
-        ParseQuery<ParseObject> query8kHz = new ParseQuery<>("kHz_8");
-        ParseQuery<ParseObject> query10kHz = new ParseQuery<>("kHz_8");
-        ParseQuery<ParseObject> query12kHz = new ParseQuery<>("kHz_8");
-        ParseQuery<ParseObject> query14kHz = new ParseQuery<>("kHz_8");
-        ParseQuery<ParseObject> query15kHz = new ParseQuery<>("kHz_8");
-        ParseQuery<ParseObject> query16kHz = new ParseQuery<>("kHz_8");
-
-        ParseFile file = (ParseFile) object.get("image");
-        file.getDataInBackground(new GetDataCallback() {
-            @Override
-            public void done(byte[] data, ParseException e) {
-                if (data != null){
-                    Bitmap bitmap = BitmapFactory.decodeByteArray
-                            (data,0,data.length);
-                    imageView = new ImageView(getApplicationContext());
-                    imageView.setImageBitmap(bitmap);
-                    linearLayout.addView(imageView);
-                }
-            }
-        });
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(DoctorActivity.this, ViewPatientActivity.class);
-                intent.putExtra("patient",patients.get(i));
+                String patientName = patients.get(i);
+                intent.putExtra("patient", patientName);
+
                 int[] frequencies = {8000, 10000, 12000, 14000, 15000, 16000};
                 intent.putExtra("frequency", frequencies);
-                int[] volume = {2, 10, 8, 11, 5, 14};
-                intent.putExtra("values", volume);
+                int[] volume = {2, 10, 8, 11, 5, 14};                           // we can randomize these 6 values to range from 0 - 15
+                intent.putExtra("values", volume);                        // and not get values from the server
                 startActivity(intent);
             }
         });
