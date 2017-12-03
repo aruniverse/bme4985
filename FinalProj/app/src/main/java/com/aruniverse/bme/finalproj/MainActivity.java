@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException e) {
                         if(e == null && (user.getUsername().toLowerCase().contains("doctor") || user.getUsername().contains("dr"))){
                             Toast.makeText(MainActivity.this, "Welcome " + user.getUsername() +"!", Toast.LENGTH_LONG).show();
-                            Intent doctorIntent = new Intent(MainActivity.this, DoctorActivity.class);
+                            Intent doctorIntent = new Intent(MainActivity.this, Doctor.class);
                             doctorIntent.putExtra("name", user.getUsername());
                             startActivity(doctorIntent);
                         } else if(e == null && !user.getUsername().equals("Doctor")){
                             Toast.makeText(MainActivity.this, "Welcome " + user.getUsername() +"!", Toast.LENGTH_LONG).show();
-                            Intent patientIntent = new Intent(MainActivity.this, PatientActivity.class);
+                            Intent patientIntent = new Intent(MainActivity.this, HearingTest.class);
                             patientIntent.putExtra("name", user.getUsername());
                             startActivity(patientIntent);
                         } else if(e != null){

@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DoctorActivity" />
-        <activity android:name=".PatientActivity" />
-        <activity android:name=".ViewPatientActivity"></activity>
+        <activity android:name=".Doctor" />
+        <activity android:name=".HearingTest" />
+        <activity android:name=".ViewPatientData"></activity>
     </application>
 
 </manifest>

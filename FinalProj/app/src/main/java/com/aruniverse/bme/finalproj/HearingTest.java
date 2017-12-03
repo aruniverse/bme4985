@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class PatientActivity extends AppCompatActivity {
+public class HearingTest extends AppCompatActivity {
 
     Button v8000,v10000, v12000, v14000, v15000,v16000, confirm, reset, save;
     MediaPlayer mp;
@@ -37,7 +37,7 @@ public class PatientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient);
+        setContentView(R.layout.activity_hearing_test);
         setTitle("Hearing Test");
         Intent intent = getIntent();
         patientName = intent.getStringExtra("name");
@@ -57,7 +57,7 @@ public class PatientActivity extends AppCompatActivity {
         hm = new HashMap<Integer, Integer>();
         final Button[] buttonList = {v8000, v10000, v12000, v14000, v15000, v16000};
 
-        mp = MediaPlayer.create(PatientActivity.this,R.raw.v8000);
+        mp = MediaPlayer.create(HearingTest.this,R.raw.v8000);
         mp.stop();
 //        save.setEnabled(false);
         v8000.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp.stop();
                 confirm.setText("Confirm");
-                mp = MediaPlayer.create(PatientActivity.this,R.raw.v8000);
+                mp = MediaPlayer.create(HearingTest.this,R.raw.v8000);
                 mp.setLooping(true);
                 mp.start();
                 hz = 8000;
@@ -76,7 +76,7 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp.stop();
                 confirm.setText("Confirm");
-                mp = MediaPlayer.create(PatientActivity.this,R.raw.v10000);
+                mp = MediaPlayer.create(HearingTest.this,R.raw.v10000);
                 mp.setLooping(true);
                 mp.start();
                 hz = 10000;
@@ -87,7 +87,7 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp.stop();
                 confirm.setText("Confirm");
-                mp = MediaPlayer.create(PatientActivity.this,R.raw.v12000);
+                mp = MediaPlayer.create(HearingTest.this,R.raw.v12000);
                 mp.setLooping(true);
                 mp.start();
                 hz = 12000;
@@ -98,7 +98,7 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp.stop();
                 confirm.setText("Confirm");
-                mp = MediaPlayer.create(PatientActivity.this,R.raw.v14000);
+                mp = MediaPlayer.create(HearingTest.this,R.raw.v14000);
                 mp.setLooping(true);
                 mp.start();
                 hz = 14000;
@@ -109,7 +109,7 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp.stop();
                 confirm.setText("Confirm");
-                mp = MediaPlayer.create(PatientActivity.this,R.raw.v15000);
+                mp = MediaPlayer.create(HearingTest.this,R.raw.v15000);
                 mp.setLooping(true);
                 mp.start();
                 hz = 15000;
@@ -120,7 +120,7 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp.stop();
                 confirm.setText("Confirm");
-                mp = MediaPlayer.create(PatientActivity.this,R.raw.v16000);
+                mp = MediaPlayer.create(HearingTest.this,R.raw.v16000);
                 mp.setLooping(true);
                 mp.start();
                 hz = 16000;
@@ -169,7 +169,7 @@ public class PatientActivity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PatientActivity.this, "Reset", Toast.LENGTH_LONG).show();
+                Toast.makeText(HearingTest.this, "Reset", Toast.LENGTH_LONG).show();
                 mp.stop();
                 confirm.setText("Confirm");
                 graphView.removeAllSeries();
@@ -182,9 +182,9 @@ public class PatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                if (v14000.isEnabled()==false && v8000.isEnabled()==false && v10000.isEnabled()==false && v15000.isEnabled()==false && v12000.isEnabled()==false &&v16000.isEnabled()==false) {
-//                    Toast.makeText(PatientActivity.this, "All are clicked!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(HearingTest.this, "All are clicked!", Toast.LENGTH_SHORT).show();
 //                } if (v14000.isEnabled() || v8000.isEnabled() || v10000.isEnabled() || v15000.isEnabled() || v12000.isEnabled() || v16000.isEnabled()) {
-//                    Toast.makeText(PatientActivity.this, "Please complete all frequencies", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(HearingTest.this, "Please complete all frequencies", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
                 ParseObject patientData = new ParseObject("HearingTestData");
@@ -201,9 +201,9 @@ public class PatientActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         if(e == null){
-                            Toast.makeText(PatientActivity.this, "Data saved!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HearingTest.this, "Data saved!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(PatientActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HearingTest.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -16,7 +16,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorActivity extends AppCompatActivity {
+public class Doctor extends AppCompatActivity {
 
     ListView listView;
     ArrayList<String> patients;
@@ -50,7 +50,7 @@ public class DoctorActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(DoctorActivity.this, ViewPatientActivity.class);
+                Intent intent = new Intent(Doctor.this, ViewPatientData.class);
                 String patientName = patients.get(i);
                 intent.putExtra("patient", patientName);
 

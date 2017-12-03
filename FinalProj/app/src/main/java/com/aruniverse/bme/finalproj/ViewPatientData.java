@@ -15,7 +15,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPatientActivity extends AppCompatActivity {
+public class ViewPatientData extends AppCompatActivity {
 
     GraphView graphView;
     LineGraphSeries<DataPoint> data;
