@@ -33,7 +33,9 @@ public class PatientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_patient);
+        setTitle("Hearing Test");
+
         v8000 = (Button)findViewById(R.id.button1);
         v10000 = (Button)findViewById(R.id.button2);
         v12000 = (Button)findViewById(R.id.button3);
@@ -135,22 +137,22 @@ public class PatientActivity extends AppCompatActivity {
                     v15000.setEnabled(false);
                 if(hz == 16000)
                     v16000.setEnabled(false);
-                if(hm.isEmpty()){                                                                       // add first data point
+                    if(hm.isEmpty()){                                                                       // add first data point
                     hm.put(hz, vol);
                     data.appendData(new DataPoint(hz, vol), true, 100);
                     graphView.addSeries(data);
                 }
                 if(!hm.isEmpty()){
-                    if(!hm.containsKey(hz)) {                                                           // very unlikely that key will be present but just in case
-                        graphView.removeAllSeries();                                                    // reset the graph
-                        hm.put(hz, vol);                                                                // add new key(hz)
-                        List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                          // get list of all keys
-                        Collections.sort(keyList);                                                      // sort list of keys in increasing order
+                    if(!hm.containsKey(hz)) {                                                               // very unlikely that key will be present but just in case
+                        graphView.removeAllSeries();                                                        // reset the graph
+                        hm.put(hz, vol);                                                                    // add new key(hz)
+                        List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                        // get list of all keys
+                        Collections.sort(keyList);                                                          // sort list of keys in increasing order
                         LineGraphSeries<DataPoint> newData = new LineGraphSeries<>(new DataPoint[]{});
-                        for (int i=0; i<keyList.size(); i++) {                                          // go through all keys
-                            int key = keyList.get(i);                                                   // get key
-                            int val = hm.get(key);                                                      // get value
-                            newData.appendData(new DataPoint(key, val), true, 100);                     // add new data point
+                        for (int i=0; i<keyList.size(); i++) {                                              // go through all keys
+                            int key = keyList.get(i);                                                       // get key
+                            int val = hm.get(key);                                                          // get value
+                            newData.appendData(new DataPoint(key, val), true, 100); // add new data point
                         }
                         graphView.addSeries(newData);
                     }
