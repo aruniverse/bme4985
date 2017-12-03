@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,12 +32,15 @@ public class PatientActivity extends AppCompatActivity {
     GraphView graphView;
     LineGraphSeries<DataPoint> data;
     HashMap<Integer, Integer> hm;
+    String patientName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
         setTitle("Hearing Test");
+        Intent intent = getIntent();
+        patientName = intent.getStringExtra("name");
 
         v8000 = (Button)findViewById(R.id.button1);
         v10000 = (Button)findViewById(R.id.button2);
@@ -53,6 +59,7 @@ public class PatientActivity extends AppCompatActivity {
 
         mp = MediaPlayer.create(PatientActivity.this,R.raw.v8000);
         mp.stop();
+//        save.setEnabled(false);
         v8000.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,6 +164,8 @@ public class PatientActivity extends AppCompatActivity {
                         graphView.addSeries(newData);
                     }
                 }
+//                if(areAllButtonsDisabled())
+//                    save.setEnabled(true);
             }
         });
         reset.setOnClickListener(new View.OnClickListener() {
@@ -174,10 +183,27 @@ public class PatientActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(PatientActivity.this, SaveActivity.class);
-//                //intent.putExtra("name", user.getUsername());
-//                startActivity(intent);
-                Toast.makeText(PatientActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+//                if (v14000.isEnabled()==false && v8000.isEnabled()==false && v10000.isEnabled()==false && v15000.isEnabled()==false && v12000.isEnabled()==false &&v16000.isEnabled()==false) {
+//                    Toast.makeText(PatientActivity.this, "All are clicked!", Toast.LENGTH_SHORT).show();
+//                } if (v14000.isEnabled() || v8000.isEnabled() || v10000.isEnabled() || v15000.isEnabled() || v12000.isEnabled() || v16000.isEnabled()) {
+//                    Toast.makeText(PatientActivity.this, "Please complete all frequencies", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                ParseObject patientData = new ParseObject("HearingTestData");
+                patientData.put("Patient", patientName);
+                for(int hz : hm.keySet())
+                    patientData.put(Integer.toString(hz)+"hz", hm.get(hz));
+                patientData.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e == null){
+                            Toast.makeText(PatientActivity.this, "Data saved!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(PatientActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
 
@@ -198,5 +224,12 @@ public class PatientActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
-}
 
+//    public boolean areAllButtonsDisabled(){
+//        for(Button b : buttonList){
+//            if(b.isEnabled())
+//                return false;
+//        }
+//        return true;
+//    }
+}

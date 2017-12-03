@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         } else if(e == null && !user.getUsername().equals("Doctor")){
                             Toast.makeText(MainActivity.this, user.getUsername(), Toast.LENGTH_LONG).show();
                             Intent patientIntent = new Intent(MainActivity.this, PatientActivity.class);
-//                            intent.putExtra("name", user.getUsername());
+                            patientIntent.putExtra("name", user.getUsername());
                             //patientIntent.putExtra("name", "patient");
                             startActivity(patientIntent);
                         } else if(e != null){
