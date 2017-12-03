@@ -191,8 +191,14 @@ public class PatientActivity extends AppCompatActivity {
 //                }
                 ParseObject patientData = new ParseObject("HearingTestData");
                 patientData.put("Patient", patientName);
-                for(int hz : hm.keySet())
-                    patientData.put(Integer.toString(hz)+"hz", hm.get(hz));
+                List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                        // get list of all keys
+                Collections.sort(keyList);                                                          // sort list of keys in increasing order
+                for (int i=0; i<keyList.size(); i++) {                                              // go through all keys
+                    int key = keyList.get(i);                                                       // get key
+                    int val = hm.get(key);                                                          // get value
+                    String keyStr = "kHz_" + Integer.toString(key/1000);
+                    patientData.put(keyStr, val);                                                   // add new data point
+                }
                 patientData.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

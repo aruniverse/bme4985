@@ -75,17 +75,15 @@ public class MainActivity extends AppCompatActivity {
                 ParseUser.logInInBackground(userName, passWord, new LogInCallback() {
                     @Override
                     public void done(ParseUser user, ParseException e) {
-                        if(e == null && (user.getUsername().contains("Doctor") || user.getUsername().contains("Dr"))){
-                            Toast.makeText(MainActivity.this, "Welcome Dr!", Toast.LENGTH_LONG).show();
+                        if(e == null && (user.getUsername().toLowerCase().contains("doctor") || user.getUsername().contains("dr"))){
+                            Toast.makeText(MainActivity.this, "Welcome " + user.getUsername() +"!", Toast.LENGTH_LONG).show();
                             Intent doctorIntent = new Intent(MainActivity.this, DoctorActivity.class);
-//                            intent.putExtra("name", user.getUsername());
-                            doctorIntent.putExtra("name", "Doctor");
+                            doctorIntent.putExtra("name", user.getUsername());
                             startActivity(doctorIntent);
                         } else if(e == null && !user.getUsername().equals("Doctor")){
-                            Toast.makeText(MainActivity.this, user.getUsername(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Welcome " + user.getUsername() +"!", Toast.LENGTH_LONG).show();
                             Intent patientIntent = new Intent(MainActivity.this, PatientActivity.class);
                             patientIntent.putExtra("name", user.getUsername());
-                            //patientIntent.putExtra("name", "patient");
                             startActivity(patientIntent);
                         } else if(e != null){
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
