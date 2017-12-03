@@ -6,4 +6,107 @@
     android:layout_height="match_parent"
     tools:context="com.aruniverse.bme.finalproj.PatientActivity">
 
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:text="8 kHz"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/button1"
+            android:text="10 kHz" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button2"
+            android:layout_alignBottom="@+id/button2"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/button2"
+            android:text="12 kHz" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button1"
+            android:layout_below="@+id/button1"
+            android:layout_marginTop="14dp"
+            android:text="14 kHz" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button2"
+            android:layout_alignTop="@+id/button4"
+            android:text="15 kHz" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/seekBar"
+            android:layout_alignStart="@+id/button3"
+            android:text="16 kHz" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button4"
+            android:layout_below="@+id/button4"
+            android:layout_marginTop="25dp"
+            android:layout_alignEnd="@+id/button6" />
+
+        <Button
+            android:id="@+id/buttonConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button5"
+            android:layout_below="@+id/seekBar"
+            android:layout_marginTop="14dp"
+            android:text="Confirm" />
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/buttonConfirm" />
+
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/buttonConfirm"
+            android:layout_alignBottom="@+id/buttonConfirm"
+            android:layout_alignStart="@+id/seekBar"
+            android:text="Reset" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button6"
+            android:layout_alignTop="@+id/buttonConfirm"
+            android:text="Save" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

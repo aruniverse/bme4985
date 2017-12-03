@@ -27,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("");
 
-//        ssh -i "bme4985hw4.pem" ubuntu@ec2-18-221-69-247.us-east-2.compute.amazonaws.com
-//        website: http://18.221.69.247:80
-//        user: "user",
-//        pass: "$SsjNFzRBDpG6"
         Parse.enableLocalDatastore(this);
         Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
                 .applicationId( "bd506391ff4cd4f9fe40b30186692298922386ac")
