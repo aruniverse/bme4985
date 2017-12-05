@@ -50,6 +50,7 @@ public class ViewPatientData extends AppCompatActivity {
                                 imageView = new ImageView(getApplicationContext());
                                 imageView.setImageBitmap(bitmap);
                                 linearLayout.addView(imageView);
+                                //my comment
                                 Toast.makeText(ViewPatientData.this, "YES", Toast.LENGTH_LONG).show();
                             }
                             if (data==null){
