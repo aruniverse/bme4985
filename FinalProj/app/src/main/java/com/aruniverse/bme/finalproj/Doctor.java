@@ -28,9 +28,7 @@ public class Doctor extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         undername = new ArrayList<>();
 
-        arrayAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, undername);
-
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, undername);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereNotEqualTo("username",ParseUser.getCurrentUser().getUsername());
@@ -45,9 +43,6 @@ public class Doctor extends AppCompatActivity {
             }
         });
 
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
@@ -57,10 +52,6 @@ public class Doctor extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
 
     }
 }

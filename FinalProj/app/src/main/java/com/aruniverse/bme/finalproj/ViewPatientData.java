@@ -26,13 +26,14 @@ public class ViewPatientData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_patient_data);
         Intent intent = getIntent();
+        //String name = intent.getStringExtra("names");
         setTitle("Hearing Test Results");
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
 
         ParseQuery<ParseObject> query = new ParseQuery<>("image");
 
-        query.whereEqualTo("patient",intent.getStringExtra("username"));
+        query.whereEqualTo("undername",intent.getStringExtra("names"));
         query.orderByDescending("createdAt");
 
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -56,6 +57,7 @@ public class ViewPatientData extends AppCompatActivity {
                             }
                         }
                     });
+                    return;
                 }
             }
         });
