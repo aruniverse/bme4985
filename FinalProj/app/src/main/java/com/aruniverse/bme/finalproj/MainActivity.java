@@ -77,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException e) {
                         if(e == null && (user.getUsername().contains("Doctor") || user.getUsername().contains("Dr"))){
                             Toast.makeText(MainActivity.this, "Welcome Dr!", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this, DoctorActivity.class);
+                            Intent intent = new Intent(MainActivity.this, Doctor.class);
 //                            intent.putExtra("name", user.getUsername());
                             intent.putExtra("name", "Doctor");
                             startActivity(intent);
 
                         } else if(e == null && !user.getUsername().equals("Doctor")){
                             Toast.makeText(MainActivity.this, user.getUsername(), Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                            Intent intent = new Intent(MainActivity.this, HearingTest.class);
                            intent.putExtra("name", user.getUsername());
                             //intent.putExtra("name", "patient");
                             startActivity(intent);
