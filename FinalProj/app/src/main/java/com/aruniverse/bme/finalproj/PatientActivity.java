@@ -1,28 +1,43 @@
 package com.aruniverse.bme.finalproj;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.service.autofill.SaveCallback;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 public class PatientActivity extends AppCompatActivity {
-
+    private ImageView imageView;
     Button v8000,v10000, v12000, v14000, v15000,v16000, confirm, reset, save;
     MediaPlayer mp;
+    String patientname;
+
     SeekBar seekBar;
     AudioManager audioManager; // control the volume
     int hz;
@@ -33,7 +48,10 @@ public class PatientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_patient);
+        imageView= (ImageView)findViewById(R.id.imageView2);
+        Intent intent = getIntent();
+        patientname = intent.getStringExtra("name");
         v8000 = (Button)findViewById(R.id.button1);
         v10000 = (Button)findViewById(R.id.button2);
         v12000 = (Button)findViewById(R.id.button3);
@@ -169,15 +187,35 @@ public class PatientActivity extends AppCompatActivity {
                     b.setEnabled(true);
             }
         });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
+       save.setOnClickListener(new View.OnClickListener() {
+           @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(PatientActivity.this, SaveActivity.class);
-//                //intent.putExtra("name", user.getUsername());
-//                startActivity(intent);
-                Toast.makeText(PatientActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
-            }
+               // Intent intent = new Intent(PatientActivity.this, SaveActivity.class);
+                //intent.putExtra("name", user.getUsername());
+                //startActivity(intent);
+               Bitmap b =Screenshot.takescreenshotOfRootView(imageView);
+               Bitmap resizedBitmap = Bitmap.createBitmap(b, 0, 600, 700, 550);
+               ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+               resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+               byte[] bytes = stream.toByteArray();
+               ParseFile file = new ParseFile("image.png",bytes);
+               ParseObject object = new ParseObject("image");
+               object.put("image",file);
+               object.put("undername",patientname);
+               object.saveInBackground();
+
+
+
+
+           }
+
+
+
+
         });
+
 
         audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
         int maxVol = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);

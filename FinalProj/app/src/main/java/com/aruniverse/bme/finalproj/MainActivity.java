@@ -81,17 +81,23 @@ public class MainActivity extends AppCompatActivity {
 //                            intent.putExtra("name", user.getUsername());
                             intent.putExtra("name", "Doctor");
                             startActivity(intent);
+
                         } else if(e == null && !user.getUsername().equals("Doctor")){
                             Toast.makeText(MainActivity.this, user.getUsername(), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this, PatientActivity.class);
-//                            intent.putExtra("name", user.getUsername());
-                            intent.putExtra("name", "patient");
+                           intent.putExtra("name", user.getUsername());
+                            //intent.putExtra("name", "patient");
                             startActivity(intent);
+
                         } else if(e != null){
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+
+
+
+
             }
         });
     }

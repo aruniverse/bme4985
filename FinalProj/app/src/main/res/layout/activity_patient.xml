@@ -7,20 +7,20 @@
     tools:context="com.aruniverse.bme.finalproj.PatientActivity">
 
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="365dp"
+        android:layout_height="494dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="9dp">
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
-            android:text="8 kHz"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp" />
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="10dp"
+            android:text="8 kHz" />
 
         <Button
             android:id="@+id/button2"
@@ -50,6 +50,15 @@
             android:layout_marginTop="14dp"
             android:text="14 kHz" />
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/button1"
+            android:layout_marginEnd="12dp"
+            android:scaleType="fitCenter" />
+
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
@@ -70,10 +79,10 @@
             android:id="@+id/seekBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/button6"
             android:layout_alignStart="@+id/button4"
             android:layout_below="@+id/button4"
-            android:layout_marginTop="25dp"
-            android:layout_alignEnd="@+id/button6" />
+            android:layout_marginTop="25dp" />
 
         <Button
             android:id="@+id/buttonConfirm"
@@ -88,8 +97,9 @@
             android:id="@+id/graphView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/buttonConfirm" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/buttonConfirm"
+            android:layout_marginTop="35dp" />
 
         <Button
             android:id="@+id/buttonReset"
@@ -107,6 +117,7 @@
             android:layout_alignStart="@+id/button6"
             android:layout_alignTop="@+id/buttonConfirm"
             android:text="Save" />
+
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
