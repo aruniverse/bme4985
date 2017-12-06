@@ -51,7 +51,7 @@ public class ViewPatientData extends AppCompatActivity {
                                 imageView.setImageBitmap(bitmap);
                                 linearLayout.addView(imageView);
                                 //my comment
-                                Toast.makeText(ViewPatientData.this, "YES", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(ViewPatientData.this, "YES", Toast.LENGTH_LONG).show();
                             }
                             if (data==null){
                                 Toast.makeText(ViewPatientData.this, "nope", Toast.LENGTH_LONG).show();

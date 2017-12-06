@@ -182,6 +182,7 @@ public class HearingTest extends AppCompatActivity {
                 mp.stop();
                 confirm.setText("Confirm");
                 graphView.removeAllSeries();
+                save.setEnabled(true);
                 hm.clear();
                 for(Button b : buttonList)
                     b.setEnabled(true);
@@ -190,9 +191,7 @@ public class HearingTest extends AppCompatActivity {
        save.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(PatientActivity.this, SaveActivity.class);
-                //intent.putExtra("name", user.getUsername());
-                //startActivity(intent);
+
                Bitmap b =Screenshot.takescreenshotOfRootView(imageView);
                Bitmap resizedBitmap = Bitmap.createBitmap(b, 0, 600, 700, 550);
                ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -205,7 +204,8 @@ public class HearingTest extends AppCompatActivity {
                object.put("image",file);
                object.put("undername",patientname);
                object.saveInBackground();
-
+               Toast.makeText(HearingTest.this, "Thanks!", Toast.LENGTH_LONG).show();
+               save.setEnabled(false);
 
 
 
