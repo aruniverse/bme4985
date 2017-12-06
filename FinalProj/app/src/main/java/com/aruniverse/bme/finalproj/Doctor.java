@@ -53,11 +53,6 @@ public class Doctor extends AppCompatActivity {
                 Intent intent = new Intent(Doctor.this, ViewPatientData.class);
                 String patientName = patients.get(i);
                 intent.putExtra("patient", patientName);
-
-                int[] frequencies = {8000, 10000, 12000, 14000, 15000, 16000};
-                intent.putExtra("frequency", frequencies);
-                int[] volume = {2, 10, 8, 11, 5, 14};                           // we can randomize these 6 values to range from 0 - 15
-                intent.putExtra("values", volume);                        // and not get values from the server
                 startActivity(intent);
             }
         });

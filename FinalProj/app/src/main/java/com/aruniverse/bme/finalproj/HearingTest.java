@@ -1,22 +1,24 @@
 package com.aruniverse.bme.finalproj;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,6 +35,7 @@ public class HearingTest extends AppCompatActivity {
     LineGraphSeries<DataPoint> data;
     HashMap<Integer, Integer> hm;
     String patientName;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class HearingTest extends AppCompatActivity {
         save = (Button)findViewById(R.id.buttonSave);
         seekBar = (SeekBar)findViewById(R.id.seekBar);
         graphView = (GraphView)findViewById(R.id.graphView);
+        imageView= (ImageView)findViewById(R.id.imageView);
         data = new LineGraphSeries<>(new DataPoint[]{});
         hm = new HashMap<Integer, Integer>();
         final Button[] buttonList = {v8000, v10000, v12000, v14000, v15000, v16000};
@@ -187,27 +191,17 @@ public class HearingTest extends AppCompatActivity {
 //                    Toast.makeText(HearingTest.this, "Please complete all frequencies", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
-                ParseObject patientData = new ParseObject("HearingTestData");
-                patientData.put("Patient", patientName);
-                List<Integer> keyList = new ArrayList<Integer>(hm.keySet());                              // get list of all keys
-                Collections.sort(keyList);                                                          // sort list of keys in increasing order
-                for (int i=0; i<keyList.size(); i++) {                                              // go through all keys
-                    int key = keyList.get(i);                                                       // get key
-                    int val = hm.get(key);                                                          // get value
-                    String keyStr = "kHz_" + Integer.toString(key/1000);
-                    patientData.put(keyStr, val);                                                   // add new data point
-                }
-                patientData.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if(e == null){
-                            Toast.makeText(HearingTest.this, "Data saved!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(HearingTest.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
 
+                Bitmap b = Screenshot.takescreenshotOfRootView(imageView);
+                Bitmap resizedBitmap = Bitmap.createBitmap(b, 0, 600, 700, 550);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] bytes = stream.toByteArray();
+                ParseObject object = new ParseObject("image");
+                ParseFile file = new ParseFile("image.png",bytes);
+                object.put("image",file);
+                object.put("undername",patientName);
+                object.saveInBackground();
             }
         });
 
