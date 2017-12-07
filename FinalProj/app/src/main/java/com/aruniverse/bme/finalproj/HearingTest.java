@@ -148,7 +148,7 @@ public class HearingTest extends AppCompatActivity {
                     v15000.setEnabled(false);
                 if(hz == 16000)
                     v16000.setEnabled(false);
-                    if(hm.isEmpty()){                                                                       // add first data point
+                if(hm.isEmpty()){                                                                       // add first data point
                     hm.put(hz, vol);
                     data.appendData(new DataPoint(hz, vol), true, 100);
                     graphView.addSeries(data);

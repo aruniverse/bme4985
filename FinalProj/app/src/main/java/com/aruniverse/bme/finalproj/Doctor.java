@@ -25,11 +25,11 @@ public class Doctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor);
-        
+
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         setTitle(name+"'s patients");
-        
+
         listView = findViewById(R.id.listView);
         patients = new ArrayList<>();
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patients);
