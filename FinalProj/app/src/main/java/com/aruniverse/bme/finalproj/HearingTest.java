@@ -180,18 +180,12 @@ public class HearingTest extends AppCompatActivity {
                 hm.clear();
                 for(Button b : buttonList)
                     b.setEnabled(true);
+                save.setEnabled(true);
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (v14000.isEnabled()==false && v8000.isEnabled()==false && v10000.isEnabled()==false && v15000.isEnabled()==false && v12000.isEnabled()==false &&v16000.isEnabled()==false) {
-//                    Toast.makeText(HearingTest.this, "All are clicked!", Toast.LENGTH_SHORT).show();
-//                } if (v14000.isEnabled() || v8000.isEnabled() || v10000.isEnabled() || v15000.isEnabled() || v12000.isEnabled() || v16000.isEnabled()) {
-//                    Toast.makeText(HearingTest.this, "Please complete all frequencies", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-
                 Bitmap b = Screenshot.takescreenshotOfRootView(imageView);
                 Bitmap resizedBitmap = Bitmap.createBitmap(b, 0, 600, 700, 550);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -202,6 +196,8 @@ public class HearingTest extends AppCompatActivity {
                 object.put("image",file);
                 object.put("undername",patientName);
                 object.saveInBackground();
+                Toast.makeText(HearingTest.this, "Thanks!", Toast.LENGTH_LONG).show();
+                save.setEnabled(false);
             }
         });
 

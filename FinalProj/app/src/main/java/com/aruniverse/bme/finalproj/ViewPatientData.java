@@ -50,9 +50,8 @@ public class ViewPatientData extends AppCompatActivity {
                                 imageView = new ImageView(getApplicationContext());
                                 imageView.setImageBitmap(bitmap);
                                 linearLayout.addView(imageView);
-                                Toast.makeText(ViewPatientData.this, "yes", Toast.LENGTH_LONG).show();
                             } else if (data==null){
-                                Toast.makeText(ViewPatientData.this, "nope", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ViewPatientData.this, "no data for this patient", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
